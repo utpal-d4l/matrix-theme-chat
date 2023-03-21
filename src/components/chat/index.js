@@ -1,6 +1,6 @@
 import { onSnapshot } from "firebase/firestore";
 import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import { classNames, showApiError } from "../../utils/common";
+import { classNames, copyRoomId, showApiError } from "../../utils/common";
 import {
   addMessage,
   getMessageQuery,
@@ -113,7 +113,12 @@ function Chat({ roomName, roomId }) {
       <div className={styles.header}>
         <div>{roomName}</div>
         <div>
-          {roomId}{" "}
+          <span
+            className={styles.roomIdText}
+            onClick={() => copyRoomId(roomId)}
+          >
+            {roomId}
+          </span>{" "}
           <em>(You can share this code with others to join the module)</em>
         </div>
       </div>

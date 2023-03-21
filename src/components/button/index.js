@@ -17,6 +17,7 @@ function Button({
       className={classNames([...className.split(" "), styles.button])}
       style={style}
       disabled={disabled}
+      aria-label={buttonText}
     >
       {buttonText}
     </button>

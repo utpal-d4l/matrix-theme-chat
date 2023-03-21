@@ -84,7 +84,10 @@
   font-weight: 700;
 }
 
-.header > div:last-child, div > em {
+.header > div:last-child * {
   font-size: 0.75rem;
 }
 
+.roomIdText:hover {
+  cursor: copy;
+}

@@ -23,3 +23,13 @@ export const showApiError = (error) => {
     buttonText: "OK",
   });
 };
+
+export const copyRoomId = (roomId = "") => {
+  navigator.clipboard.writeText(roomId).then(() => {
+    openPopup({
+      title:
+        "Module name has been copied to clipboard. You can share it with others to join the module.",
+      buttonText: "Close",
+    });
+  });
+};
