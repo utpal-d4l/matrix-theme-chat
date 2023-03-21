@@ -37,7 +37,12 @@ function Popup() {
         onClick={close}
       />
       <div className={classNames([styles.popup, show && styles.popupVisible])}>
-        <button type="button" onClick={close} className={styles.closeButton}>
+        <button
+          type="button"
+          onClick={close}
+          className={styles.closeButton}
+          aria-label="close"
+        >
           ✖
         </button>
         {content.current.title}
