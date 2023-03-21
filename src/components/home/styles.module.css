@@ -1,0 +1,68 @@
+.homeContainer {
+  background-color: var(--black);
+  padding: 1rem;
+  position: absolute;
+  color: var(--green-3);
+  width: 60%;
+  max-height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border: 0.25rem solid var(--green-2);
+  overflow-y: auto;
+}
+
+.homeText {
+  color: var(--black);
+  opacity: 0;
+  background-color: var(--green-3);
+  animation: home-text-animation 0.05s linear forwards;
+  font-weight: 700;
+}
+
+@keyframes home-text-animation {
+  1% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    color: var(--green-3);
+    background-color: var(--black);
+  }
+}
+
+.homeInput {
+  background-color: var(--black);
+  color: var(--green-3);
+  outline: none;
+  border: none;
+  caret-shape: block;
+  caret-color: var(--green-3);
+  width: 100%;
+  border: 0.125rem solid var(--green-2);
+  padding: 0.5rem;
+  margin-block-start: 0.5rem;
+  font-weight: 700;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.button {
+  flex: 1;
+  margin-block-start: 1rem;
+}
+
+.button:first-child {
+  margin-inline-end: 2rem;
+}
+
+.logoutButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

@@ -1,0 +1,31 @@
+.button {
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  outline: none;
+  border: none;
+  background-color: var(--black);
+  border: 0.25rem solid var(--green-2);
+  color: var(--green-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  cursor: pointer;
+  transition-property: background-color, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+
+.button:hover {
+  background-color: var(--green-1);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  background-color: var(--black);
+}

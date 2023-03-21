@@ -1,0 +1,26 @@
+.container {
+  background-color: var(--black);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.binaryText {
+  --scale: 1;
+  color: var(--green-3);
+  position: absolute;
+  top: 0;
+  font-weight: 700;
+  transform: scale(var(--scale)) translateY(-200%);
+  animation: binary-text-animation linear infinite forwards;
+}
+
+@keyframes binary-text-animation {
+  100% {
+    transform: scale(var(--scale)) translateY(200%);;
+  }
+}
