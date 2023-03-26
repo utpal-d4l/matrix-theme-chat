@@ -42,7 +42,11 @@ function Home({ setRoomDetails }) {
     findRoom(module)
       .then((room) => {
         if (room.exists()) {
-          setRoomDetails({ name: room.data().name, id: room.id });
+          const roomDetails = { name: room.data().name, id: room.id };
+          setRoomDetails(roomDetails);
+          try {
+            localStorage.setItem("roomDetails", JSON.stringify(roomDetails));
+          } catch (error) {}
         } else {
           openPopup({
             title:
@@ -57,7 +61,11 @@ function Home({ setRoomDetails }) {
   const onPressCreateRoom = () => {
     addRoom(module)
       .then((room) => {
-        setRoomDetails({ name: module, id: room.id });
+        const roomDetails = { name: module, id: room.id };
+        setRoomDetails(roomDetails);
+        try {
+          localStorage.setItem("roomDetails", JSON.stringify(roomDetails));
+        } catch (error) {}
       })
       .catch(showApiError);
   };
@@ -88,12 +96,18 @@ function Home({ setRoomDetails }) {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(firebaseAuth, (user) => {
-      if (user) setIsAuthenticated(true);
-      else setIsAuthenticated(false);
+      if (user) {
+        setIsAuthenticated(true);
+        let localRoomDetails;
+        try {
+          localRoomDetails = JSON.parse(localStorage.getItem("roomDetails"));
+        } catch (error) {}
+        if (localRoomDetails) setRoomDetails(localRoomDetails);
+      } else setIsAuthenticated(false);
     });
 
     return () => unsub();
-  }, []);
+  }, [setRoomDetails]);
 
   return (
     <>
@@ -101,7 +115,15 @@ function Home({ setRoomDetails }) {
         <div className={styles.logoutButton}>
           <Button
             buttonText="Plug out"
-            onClick={() => logout().catch(showApiError)}
+            onClick={() =>
+              logout()
+                .catch(showApiError)
+                .finally(() => {
+                  try {
+                    localStorage.removeItem("roomDetails");
+                  } catch (error) {}
+                })
+            }
           />
         </div>
       )}

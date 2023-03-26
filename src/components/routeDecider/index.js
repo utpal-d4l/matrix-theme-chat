@@ -6,7 +6,11 @@ function Router() {
   const [roomDetails, setRoomDetails] = useState(null);
 
   return roomDetails ? (
-    <Chat roomName={roomDetails.name} roomId={roomDetails.id} />
+    <Chat
+      roomName={roomDetails.name}
+      roomId={roomDetails.id}
+      setRoomDetails={setRoomDetails}
+    />
   ) : (
     <Home setRoomDetails={setRoomDetails} />
   );

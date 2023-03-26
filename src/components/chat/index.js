@@ -30,7 +30,7 @@ const ListItem = memo(({ user, message, timestamp, isSelf }) => {
   );
 });
 
-function Chat({ roomName, roomId }) {
+function Chat({ roomName, roomId, setRoomDetails }) {
   const [message, setMessage] = useState("");
   const [state, setState] = useState({ data: [] });
   const [inputHeight, setInputHeight] = useState("2.5rem");
@@ -127,16 +127,27 @@ function Chat({ roomName, roomId }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div>{roomName}</div>
         <div>
-          <span
-            className={styles.roomIdText}
-            onClick={() => copyRoomId(roomId)}
-          >
-            {roomId}
-          </span>{" "}
-          <em>(You can share this code with others to join the module)</em>
+          <div>{roomName}</div>
+          <div>
+            <span
+              className={styles.roomIdText}
+              onClick={() => copyRoomId(roomId)}
+            >
+              {roomId}
+            </span>{" "}
+            <em>(You can share this code with others to join the module)</em>
+          </div>
         </div>
+        <Button
+          buttonText="Leave Module"
+          onClick={() => {
+            setRoomDetails(null);
+            try {
+              localStorage.removeItem("roomDetails");
+            } catch (error) {}
+          }}
+        />
       </div>
       {list}
       {form}
