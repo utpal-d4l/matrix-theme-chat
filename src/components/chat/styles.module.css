@@ -28,7 +28,7 @@
   display: flex;
   justify-content: space-between;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   border-top: 0.125rem solid var(--green-2);
 }
 
@@ -40,11 +40,13 @@
   width: 100%;
   color: var(--green-3);
   padding-inline: 1rem;
-  padding-block: 0.25rem;
+  padding-block: 0.5rem;
   font-weight: 700;
-  height: 2.5rem;
+  min-height: 2.5rem;
+  max-height: 7.5rem;
   margin-inline-end: 1rem;
   resize: none;
+  transition: height 0.1s ease-in;
 }
 
 /* chat item */
@@ -90,4 +92,15 @@
 
 .roomIdText:hover {
   cursor: copy;
+}
+
+@media all and (max-width: 480px) {
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+
+  .chatItem {
+    max-width: 90%;
+  }
 }

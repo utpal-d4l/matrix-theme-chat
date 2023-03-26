@@ -11,7 +11,9 @@ import styles from "./styles.module.css";
 
 const ListItem = memo(({ user, message, timestamp, isSelf }) => {
   const date = new Date(timestamp);
-  const todayStartTimestamp = new Date(date.toLocaleDateString()).getTime();
+  const todayStartTimestamp = new Date(
+    new Date(Date.now()).toLocaleDateString()
+  ).getTime();
 
   return (
     <li
@@ -31,6 +33,7 @@ const ListItem = memo(({ user, message, timestamp, isSelf }) => {
 function Chat({ roomName, roomId }) {
   const [message, setMessage] = useState("");
   const [state, setState] = useState({ data: [] });
+  const [inputHeight, setInputHeight] = useState("2.5rem");
   const user = useMemo(() => getUser(), []);
   const listRef = useRef();
 
@@ -91,13 +94,26 @@ function Chat({ roomName, roomId }) {
         userName: user.displayName || user.email || user.userId,
       });
       setMessage("");
+      setInputHeight("2.5rem");
+    };
+
+    const onChange = (e) => {
+      setMessage(e.target.value);
+      setInputHeight((height) => {
+        if (!e.target.value) return "2.5rem";
+        else if (height !== e.target.scrollHeight) {
+          return `${e.target.scrollHeight}px`;
+        }
+        return height;
+      });
     };
 
     return (
       <form onSubmit={onSubmit} className={styles.messageInput}>
         <textarea
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={onChange}
+          style={{ height: inputHeight }}
         />
         <Button
           buttonText="Send"
@@ -106,7 +122,7 @@ function Chat({ roomName, roomId }) {
         />
       </form>
     );
-  }, [message, user, roomId]);
+  }, [message, user, roomId, inputHeight]);
 
   return (
     <div className={styles.container}>
