@@ -12,12 +12,6 @@
   overflow-y: auto;
 }
 
-@media all and (max-width: 480px) {
-  .homeContainer {
-    width: 90%;
-  }
-}
-
 .homeText {
   color: var(--black);
   opacity: 0;
@@ -55,20 +49,36 @@
 .buttonContainer {
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
+  margin-block-start: 1rem;
 }
 
 .button {
   flex: 1;
-  margin-block-start: 1rem;
 }
 
 .button:first-child {
-  margin-inline-end: 2rem;
+  margin-inline-end: 1rem;
 }
 
 .logoutButton {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+
+@media all and (max-width: 700px) {
+  .homeContainer {
+    width: 90%;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .button:first-child {
+    margin-inline-end: 0rem;
+    margin-block-end: 0.5rem;
+  }
 }

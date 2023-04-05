@@ -6,11 +6,15 @@ export const openPopup = ({
   title = "",
   buttonText = "",
   onClick = () => {},
+  buttonTextSecondary = "",
+  onClickSecondary = () => {},
 }) => {
   eventEmitter.emit("SET_POPUP", {
     title,
     buttonText,
     onClick,
+    buttonTextSecondary,
+    onClickSecondary,
   });
 };
 

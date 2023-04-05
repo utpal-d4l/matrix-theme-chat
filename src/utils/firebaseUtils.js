@@ -1,4 +1,4 @@
-import { signInWithPopup, signOut } from "firebase/auth";
+import { signInAnonymously, signInWithPopup, signOut } from "firebase/auth";
 import {
   addDoc,
   collection,
@@ -15,11 +15,19 @@ export const isUserAuthenticated = () => {
 
 export const getUser = () => {
   const { displayName, email, uid } = firebaseAuth.currentUser || {};
-  return { displayName, email, userId: uid };
+  return {
+    displayName: displayName || `user_${uid.substring(0, 6)}`,
+    email,
+    userId: uid,
+  };
 };
 
 export const initiateLogin = () => {
   return signInWithPopup(firebaseAuth, firebaseAuthProvider);
+};
+
+export const initiateAnonymousLogin = () => {
+  return signInAnonymously(firebaseAuth);
 };
 
 export const logout = () => {

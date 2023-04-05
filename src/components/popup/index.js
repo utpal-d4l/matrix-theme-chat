@@ -17,6 +17,11 @@ function Popup() {
     content.current?.onClick();
   };
 
+  const onButtonClickSecondary = () => {
+    close();
+    content.current?.onClickSecondary();
+  };
+
   useEffect(() => {
     const unsub = eventEmitter.addEventListener("SET_POPUP", (data) => {
       content.current = data;
@@ -46,11 +51,19 @@ function Popup() {
           ✖
         </button>
         {content.current.title}
-        <Button
-          buttonText={content.current.buttonText}
-          onClick={onButtonClick}
-          className={styles.button}
-        />
+        <div className={styles.buttonContainer}>
+          {!!content.current.buttonTextSecondary && (
+            <Button
+              buttonText={content.current.buttonTextSecondary}
+              onClick={onButtonClickSecondary}
+              className={styles.buttonSecondary}
+            />
+          )}
+          <Button
+            buttonText={content.current.buttonText}
+            onClick={onButtonClick}
+          />
+        </div>
       </div>
     </>
   );

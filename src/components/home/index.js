@@ -5,6 +5,7 @@ import { openPopup, showApiError } from "../../utils/common";
 import {
   addRoom,
   findRoom,
+  initiateAnonymousLogin,
   initiateLogin,
   isUserAuthenticated,
   logout,
@@ -80,6 +81,9 @@ function Home({ setRoomDetails }) {
         title:
           "Looks like you are not plugged into the matrix. Please plug in to continue",
         buttonText: "Plug in",
+        buttonTextSecondary: "Anonymous",
+        onClickSecondary: () =>
+          initiateAnonymousLogin().then(handleCallback).catch(showApiError),
         onClick: () => initiateLogin().then(handleCallback).catch(showApiError),
       });
     } else {
@@ -147,13 +151,13 @@ function Home({ setRoomDetails }) {
               />
               <div className={styles.buttonContainer}>
                 <Button
-                  buttonText="Enter existing module"
+                  buttonText="Enter existing"
                   className={styles.button}
                   disabled={!module}
                   onClick={() => handleRoomInput(1)}
                 />
                 <Button
-                  buttonText="Create new module"
+                  buttonText="Create new"
                   className={styles.button}
                   disabled={!module}
                   onClick={() => handleRoomInput(2)}

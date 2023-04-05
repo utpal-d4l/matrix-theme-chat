@@ -22,18 +22,12 @@
   transform: translateX(-50%) translateY(-50%) scale(0);
   background-color: var(--black);
   padding: 1rem;
-  padding-block: 4rem;
+  padding-block-start: 4rem;
   color: var(--green-3);
   transition: transform 0.2s ease-in;
   border: 0.25rem solid var(--green-2);
   width: 40%;
   font-weight: 500;
-}
-
-@media all and (max-width: 480px) {
-  .popup {
-    width: 80%;
-  }
 }
 
 .popupVisible {
@@ -57,8 +51,30 @@
   right: 1rem;
 }
 
-.button {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-block-start: 0.5rem;
+}
+
+.buttonSecondary {
+  margin-inline-end: 0.5rem;
+}
+
+@media all and (max-width: 700px) {
+  .popup {
+    width: 80%;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .buttonSecondary {
+    margin-inline-end: 0rem;
+    margin-block-end: 0.5rem;
+  }
 }
